@@ -4,10 +4,10 @@
 #
 Name     : qgit
 Version  : 2.9
-Release  : 2
+Release  : 3
 URL      : https://github.com/tibirna/qgit/archive/qgit-2.9/qgit-2.9.tar.gz
 Source0  : https://github.com/tibirna/qgit/archive/qgit-2.9/qgit-2.9.tar.gz
-Summary  : A GIT GUI viewer built on Qt/C++
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: qgit-bin = %{version}-%{release}
@@ -18,10 +18,7 @@ BuildRequires : buildreq-qmake
 BuildRequires : qtbase-dev mesa-dev
 
 %description
-qgit, a git GUI viewer
-======================
-With qgit you will be able to browse revisions history, view patch content
-and changed files, graphically following different development branches.
+This is qgit.exe statically linked to Trolltech Qt4.3.3 for Windows Open source edition
 
 %package bin
 Summary: bin components for the qgit package.
@@ -51,33 +48,33 @@ license components for the qgit package.
 
 %prep
 %setup -q -n qgit-qgit-2.9
+cd %{_builddir}/qgit-qgit-2.9
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1567897731
+export SOURCE_DATE_EPOCH=1604361429
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1567897731
+export SOURCE_DATE_EPOCH=1604361429
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/qgit
-cp COPYING.rtf %{buildroot}/usr/share/package-licenses/qgit/COPYING.rtf
+cp %{_builddir}/qgit-qgit-2.9/COPYING.rtf %{buildroot}/usr/share/package-licenses/qgit/2799e74aec7d7b12baa3507b0875fcc2c780ebd7
 pushd clr-build
 %make_install
 popd
@@ -97,4 +94,4 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/qgit/COPYING.rtf
+/usr/share/package-licenses/qgit/2799e74aec7d7b12baa3507b0875fcc2c780ebd7
