@@ -1,5 +1,5 @@
 PKG_NAME := qgit
-URL = https://github.com/tibirna/qgit/archive/qgit-2.9/qgit-2.9.tar.gz
+URL = https://github.com/tibirna/qgit/archive/qgit-2.10/qgit-2.10.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
